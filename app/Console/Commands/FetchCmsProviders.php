@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\CmsGovApi;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class FetchCmsProviders extends Command
 {
@@ -33,7 +34,7 @@ class FetchCmsProviders extends Command
             $api->fetchCmsProviders();
             return 1;
         } catch (\Exception $exception) {
-            $this->output('There was an error fetching CMS providers. Error Details: ' . $exception->getMessage());
+            Log::info('There was an error fetching CMS providers. Error Details: ', ['Exception' => $exception->getMessage()]);
         }
 
         return 0;
